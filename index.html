@@ -37,8 +37,8 @@
             }
             axios.post("https://crudcrud.com/api/8c60380f023b4de9aba3d134db2b2779/Data",obj )
             .then((response)=>{
-                showUserOnScreen(response.Data)
-                console.log(response)
+                showUserOnScreen(response.data)
+                console.log(response)   
             })
             .catch((err)=>{
                 document.body.innerHTML=document.body.innerHTML+"<h4> something went wrong</h4>"
@@ -48,6 +48,34 @@
             // localStorage.setItem(obj.tel,JSON.stringify(obj))
             // showUserOnScreen(obj)   
         }
+        window.addEventListener("DOMContentLoaded",()=>{
+            axios.get("https://crudcrud.com/api/8c60380f023b4de9aba3d134db2b2779/Data")
+            .then((response)=>{
+                
+                console.log(response)  
+                
+                for(var i=0;i<response.data.length;i++){
+                    showUserOnScreen(response.data[i])
+                }
+            })
+            .catch((error)=>{
+                // document.body.innerHTML=document.body.innerHTML+"<h4> something went wrong</h4>"
+                console.log(error)
+            // })
+            // const loacalStorageObj=localStorage;
+            // const localstoragekeys=Object.keys(loacalStorageObj)
+            
+            // for(var i=0;i<loacalStorageObj;i++){
+            //     const key=localstoragekeys[i]
+            //     const userDetailString=loacalStorageObj[key];
+            //     const userDetailObj= JSON.parse(userDetailString);
+            //     showUserOnScreen(userDetailObj);
+            
+        //  }
+
+        })
+    })
+    
         function showUserOnScreen(obj){
             const parentElem=document.getElementById('listOitems')
             // parentElem.innerHTML=parentElem.innerHTML+ `<li>${obj.name}-${obj.email}-${obj.phonenumber}</li>`
@@ -78,4 +106,5 @@
         }
     </script>
     </body>
+
 </html>
